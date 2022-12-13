@@ -68,7 +68,7 @@ public class TestJpa {
         repository.findAll().forEach(TestJpa::printOffice);
     }
 
-    private static void printOffice(Office o) {
+    private static void printOffice(Office o) { //เอา obj มาทำให้เหลือ บรรทัดเดียว
         System.out.println("Office Code: " + o.getOfficeCode());
         System.out.println("City: " + o.getCity());
         System.out.println("Country: " + o.getCountry());
@@ -88,7 +88,7 @@ public class TestJpa {
         newOffice.setPhone("+66 2 470 9872");
         newOffice.setState("");
         newOffice.setTerritory("SE-A");
-        if (repository.insert(newOffice)) {
+        if (repository.insert(newOffice)) { //ใส่ค่า
             System.out.println("Inserted New Office ::");
         } else {
             System.out.println("Can't insert Office ::");

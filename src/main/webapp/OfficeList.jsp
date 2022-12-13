@@ -7,24 +7,28 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<div class="container">
+<%--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"--%>
+<%--      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">--%>
+<%--<html>--%>
+<%--<head>--%>
+<%--    <title>Title</title>--%>
+<%--</head>--%>
+<%--<body>--%>
+<%--<div class="container">--%>
     <div class="row bg-primary">
+<%--    ให้เป็น component แทนที่  id = 'container' of index file--%>
         <h2>Classic Model Offices ::</h2>
     </div>
     <div class="row">
         <c:forEach items="${offices}" var="office">
-            <div class="col-2 border border-secondary p-2 m-2
+            <div onclick="loadOffice('${office.officeCode}')"
+                 class="col-2 border border-secondary p-2 m-2 div-link
          ${office.officeCode == selectedOffice.officeCode ? 'bg-warning' : ''}">
+<%--                คลิกได้ทั้งก้อนของ div เมือง ประเทศ เบอร์ --%>
                 <div>
-                    <a href="office-list?officeCode=${office.officeCode}">
-                            ${office.city}</a>, ${office.country}
+<%--                    <a href="office-list?officeCode=${office.officeCode}">--%>
+<%--                            ${office.city}</a>, ${office.country}--%>
+                         ${office.city} - ${office.country}
                 </div>
                 <div> ${office.phone}</div>
             </div>
@@ -43,7 +47,7 @@
             </div>
         </c:forEach>
     </div>
-</div>
-</body>
+<%--</div>--%>
+<%--</body>--%>
 
-</html>
+<%--</html>--%>

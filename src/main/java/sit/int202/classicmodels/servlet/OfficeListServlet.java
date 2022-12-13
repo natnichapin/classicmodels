@@ -9,7 +9,7 @@ import sit.int202.classicmodels.repositories.OfficeRepository;
 
 
 
-@WebServlet(name = "OfficeListServlet", value = "/officelist")
+@WebServlet(name = "OfficeListServlet", value = "/office-list")
 public class OfficeListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

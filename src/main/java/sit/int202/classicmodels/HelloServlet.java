@@ -1,4 +1,4 @@
-package com.example.classicmodels;
+package sit.int202.classicmodels;
 
 import java.io.*;
 
