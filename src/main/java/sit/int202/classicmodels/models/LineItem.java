@@ -1,5 +1,7 @@
 package sit.int202.classicmodels.models;
 
+//ไม่เกี่ยวกับ classic medel
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

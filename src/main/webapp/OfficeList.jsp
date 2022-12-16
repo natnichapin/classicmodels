@@ -24,6 +24,7 @@
             <div onclick="loadOffice('${office.officeCode}')"
                  class="col-2 border border-secondary p-2 m-2 div-link
          ${office.officeCode == selectedOffice.officeCode ? 'bg-warning' : ''}">
+<%--                ถ้ามีไอดีที่เลือกตรงกับ ไอดีของ officeCode อันไหนให้ เพิ่ม tailwind--%>
 <%--                คลิกได้ทั้งก้อนของ div เมือง ประเทศ เบอร์ --%>
                 <div>
 <%--                    <a href="office-list?officeCode=${office.officeCode}">--%>
@@ -40,6 +41,7 @@
     </div>
     <div class="row">
         <c:forEach items="${selectedOffice.employees}" var="employee">
+           <%-- เอา list ของ ลูกจ้างผ่าน row ที่มีไอดีตรงกับที่เลือก--%>
             <div class="col-2 pl-2 m-2 border border-secondary rounded-pill">
                 <div> ${employee.firstName}
                         ${employee.lastName} - ${employee.jobTitle}

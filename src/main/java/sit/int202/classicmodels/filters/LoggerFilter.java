@@ -19,9 +19,9 @@ public class LoggerFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         // ขาเข้า
-        long before = System.currentTimeMillis();
+        long before = System.currentTimeMillis(); //เวลาเริ่มต้น
         //invoke resources
-        chain.doFilter(request, response);
+        chain.doFilter(request, response); //ทำงานต่อใน resource
         //ขาออก
         HttpServletRequest req = (HttpServletRequest) request ;
         long duration = System.currentTimeMillis()-before ;

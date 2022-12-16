@@ -18,7 +18,7 @@ public class TestProduct {
 //        List<Product> productList = query.getResultList();
         ProductRepository repository = new ProductRepository();
         System.out.println("No of product: "+repository.countAll());
-        List<Product> productList = repository.findAll(1);
+        List<Product> productList = repository.findAll(5);
         //10 รายการสุดท้าย
         for (Product product : productList) {
             System.out.println(product.getProductCode()+ " : " + product.getProductName() + " : " + product.getProductLine());

@@ -18,7 +18,8 @@ public class ProductListServlet extends HttpServlet {
         String pageSizeParam = request.getParameter("pageSize");
         int page = pageParam==null ? 1 : Integer.valueOf(pageParam);
         int pageSize = pageSizeParam==null ? productRepository.getDefaultPageSize() : Integer.valueOf(pageSizeParam);
-        List<Product> productList = productRepository.findAll(page, pageSize);request.setAttribute("products", productList);
+        List<Product> productList = productRepository.findAll(page, pageSize);
+        request.setAttribute("products", productList);
         request.setAttribute("page", page);
         request.setAttribute("pageSize", pageSize);
         request.setAttribute("itemCount", productRepository.countAll());

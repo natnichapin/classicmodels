@@ -31,12 +31,16 @@
         }
     </style>
     <script>
+        function showViewCart() {
+            $('#modalCart').modal('show') ;
+            viewCart();
+            }
         function showLoginForm() {
             let menu = document.getElementById("login-menu").innerHTML;
-            if (menu.includes('Logout')) {
+            if (menu.includes('Logout')) { //ที่ nav มี logout มั้ย ถ้ามี ให้ logout
                 logout();
             } else {
-                $('#modalLoginForm').modal('show');
+                $('#modalLoginForm').modal('show'); //ไม่มีให้โชว์ หน้าต่าง
             }
         }
             function login(userName, password) {
@@ -44,7 +48,7 @@
                     document.getElementById("login-message").innerHTML = "Invalid user name or password !!!";
                 }
                 const xhttp = new XMLHttpRequest();
-                xhttp.onload = function () {
+                xhttp.onload = function () { //รอผลลัพธ์จาก จาก Send ถ้าได้กลับมาแล้วจะทำ ดังนี้
                     if (xhttp.status == 200) {
                         $('#modalLoginForm').modal('hide');
                         document.getElementById("login-menu").innerHTML = "<i class='bi bi-box-arrow-left'></i> Logout"
@@ -66,10 +70,10 @@
             xhttp.onload = function () {
                 setLoading('off');
                 cartInfo = document.getElementById("noOfItemInCart");
-                noOfItem = xhttp.responseText;
+                noOfItem = xhttp.responseText; //status text คือ ทั้งหน้า response text คือ สิ่งที่เราไปสั่งให้ response ในหน้านั้นๆ
                 if(xhttp.response.length>4){
                     //เกิน 4 ตัว เป็น Error message
-                    alert(noOfItem)
+                    alert(noOfItem) //รีเทินจาก filter
                     return;
                 }
                 if (noOfItem > 0) {
@@ -89,13 +93,13 @@
             xhttp.onload = function () {
                 setLoading('off');
                 document.getElementById("view-cart").innerHTML = xhttp.responseText;
-                $('#viewCartModal').modal('show');
+                // $('#viewCartModal').modal('show');
             }
-            xhttp.open("GET", "ViewCart.jsp");
+            xhttp.open("GET","History-product");
             xhttp.send();
         }
 
-        function setLoading(on_off) {
+        function setLoading(on_off) {  <%-- Classlist : live DOMTokenList collection of the class attributes => to manipulate the class list.--%>
             let loading = document.getElementById("loading");
             if (on_off == 'on') {
                 loading.classList.remove("d-none"); //ไม่โชว์
@@ -127,6 +131,17 @@
             xhttp.send();
         }
 
+        function viewHistory(){
+            setLoading('on');
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function (){
+                setLoading('off');
+                document.getElementById("body-content").innerHTML = xhttp.responseText;
+            }
+            xhttp.open("GET","History-product");
+            xhttp.send();
+        }
+
 
     </script>
 </head>
@@ -145,7 +160,7 @@
             <a class="nav-link" href="javascript:loadProduct(1,15)">Product</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)">Order History</a>
+            <a class="nav-link" href="javascript:viewHistory()">Order History</a>
         </li>
         <li class="nav-item ml-4">
             <a id="login-menu" class="nav-link text-light" href="javascript:showLoginForm()"><i
@@ -153,7 +168,7 @@
         </li>
     </ul>
     <div style="margin-right: 20px">
-        <img src="assets/images/cart.png" width="42" onclick="viewCart()"/>
+        <img src="assets/images/cart.png" width="42" onclick="showViewCart()"/>
         <button id="noOfItemInCart" class="cart-info" onclick="viewCart()"></button>
     </div>
 
@@ -164,17 +179,19 @@
 </div>
 </div>
 </nav>
-<div class="container" id="body-content">
+<div class="container" id="body-content">      <%--  body ทั้งหมด  --%>
     <jsp:include page="assets/home-info.html" />
+    <%-- ดึงทรัพยากร หรือ ข้อมูล HTML จากหน้าอื่น--%>
 
 </div>
-<div class="d-flex justify-content-center modal d-none"id="loading">
+<div class="d-flex justify-content-center modal d-none"id="loading"> <%--  loading  หมุนๆ --%>
+
     <div class="spinner-border text-primary"
          style="margin-top: 10%; width: 6rem; height: 6rem;">
     </div>
 </div>
-<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog"
-     aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog"  <%--  modal หน้าต่างที่เด้งตอน log in  --%>
+           aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
@@ -186,10 +203,10 @@
             <div class="modal-body mx-3">
                 <div class="md-form mb-2">
                     <i class="bi bi-person-lines-fill h3"></i>
-                    <input type="email" id="defaultForm-user" class="form-control validate">
+                    <input type="email" id="defaultForm-user" class="form-control validate">  <%-- input user --%>
                     <label data-error="wrong" data-success="right" for="defaultForm-user">User name</label>
                     <div class="md-form mb-2">                   <i class="bi bi-key h3"></i>
-                        <input type="password" id="defaultForm-pass" class="form-control validate">
+                        <input type="password" id="defaultForm-pass" class="form-control validate">  <%--  input password  --%>
                         <label data-error="wrong" data-success="right" for="defaultForm-pass">Your password</label>
                     </div>
                     <div class="md-form mt-2">
@@ -204,5 +221,17 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modalCart" tabindex="-1" role="dialog"  <%--  modal หน้าต่างที่เด้งตอน log in  --%>
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div id="view-cart"> </div>
+        </div>
+
+    </div>
+</div>
+
+
 </body>
 </html>

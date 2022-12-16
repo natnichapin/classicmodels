@@ -15,10 +15,11 @@ public class OfficeListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("test");
         OfficeRepository officeRepository = new OfficeRepository();
-        request.setAttribute("offices", officeRepository.findAll());
-        String officeCode = request.getParameter("officeCode");
+        request.setAttribute("offices", officeRepository.findAll()); //หา List ของ office ทั้งหมด เก็บเข้า session
+        String officeCode = request.getParameter("officeCode"); //เอา office code มาจาก user
         if (officeCode != null) {
-            request.setAttribute("selectedOffice", officeRepository.find(officeCode));
+            request.setAttribute("selectedOffice", officeRepository.find(officeCode)); //หา row ที่ มี office code ดังกล่าว
+            //เก็บเข้า request scope
         }
 
         getServletContext().getRequestDispatcher("/OfficeList.jsp").forward(request, response);

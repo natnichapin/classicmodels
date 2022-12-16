@@ -3,7 +3,7 @@ package sit.int202.classicmodels;
 import sit.int202.classicmodels.entities.Product;
 import sit.int202.classicmodels.models.Cart;
 import sit.int202.classicmodels.models.ClassicModelLineItem;
-import sit.int202.classicmodels.models.LineItem;
+//import sit.int202.classicmodels.models.LineItem;
 import sit.int202.classicmodels.repositories.ProductRepository;
 
 public class TestCart {

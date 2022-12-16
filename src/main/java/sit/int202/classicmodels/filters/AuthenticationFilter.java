@@ -22,9 +22,9 @@ public class AuthenticationFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         HttpSession session = httpServletRequest.getSession(false);
         if (session==null ||session.getAttribute("user")==null) {
-            response.getWriter().write("<br><br><h2 class='text-danger'>Please login first !!! </h2>");
+            response.getWriter().write("<br><br><h2 class='text-danger'>Please login first !!! </h2>"); //ไม่มี user แสดง ข้อความ
         } else {
-            chain.doFilter(request, response);
+            chain.doFilter(request, response); //มี ให้ส่งต่อไป
         }
     }
 }

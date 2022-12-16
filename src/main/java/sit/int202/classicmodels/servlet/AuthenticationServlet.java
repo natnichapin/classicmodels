@@ -16,25 +16,27 @@ public class AuthenticationServlet extends HttpServlet {
     doPost(request,response);
 
     }
-
+    //login ได้แค่ คนที่อยู่ใน db
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String password = request.getParameter("password");
+        String password = request.getParameter("password"); //รับ Username และ password มาจาก from
         String userName = request.getParameter("userName");
         if(userName==null || userName.trim().length()==0) {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-            return;
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST); //เช็คว่าไม่ส่งรหัสมา
+            return; //ไม่รีเทินอะไร
         }
         CustomerRepository customerRepository = new CustomerRepository();
-        Customer customer = customerRepository.findByName(userName);
+        Customer customer = customerRepository.findByName(userName); //หา user
         if (customer==null) {
-            response.sendError(HttpServletResponse.SC_FORBIDDEN); //403
+            response.sendError(HttpServletResponse.SC_FORBIDDEN); //403 //ไม่เจอ ส่ง 403
         } else {
+
             BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), customer.getPassword());
+            //ตรวจสอบ pass ว่าตรงกันมั้ย จาก DB
             if (!result.verified) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+                response.sendError(HttpServletResponse.SC_UNAUTHORIZED); //ไม่ตรง return Error
             } else {
-                request.getSession().setAttribute("user", customer);
+                request.getSession().setAttribute("user", customer); //Set ลง Session เพื่อระบุตัวตน
             }
         }
          }

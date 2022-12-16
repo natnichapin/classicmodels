@@ -16,17 +16,17 @@ public class AddToCartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String productCode = request.getParameter("productCode");
         HttpSession session = request.getSession();
-        Cart<String, ClassicModelLineItem> cart = (Cart) session.getAttribute("cart");
+        Cart<String, ClassicModelLineItem> cart = (Cart) session.getAttribute("cart"); //เอาตระกร้าจาก Session
         if (cart == null) {
             cart = new Cart<>();
-            session.setAttribute("cart", cart);
+            session.setAttribute("cart", cart); //เอาตระกร้าจาก session
         }
         ProductRepository productRepository = new ProductRepository();
-        Product product = productRepository.find(productCode);
+        Product product = productRepository.find(productCode);//เช็คโปรดัก ในDBว่ามีไม๊
         if (product != null) {
-            cart.addItem(productCode, new ClassicModelLineItem(product));
+            cart.addItem(productCode, new ClassicModelLineItem(product)); //แอดลงตระกร้า
         }
-        response.getWriter().print(cart.getQuantity());
+        response.getWriter().print(cart.getQuantity()); //แสดง ปริมาณในตระกร้า หลัง เพิ่มของ
     }
 
     @Override

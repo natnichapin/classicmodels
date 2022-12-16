@@ -15,15 +15,16 @@ import java.util.*;
             return map.values().stream().mapToInt(o -> o.getQuantity()).sum();
         }
         public Collection<V> getAllItem() {
-            return Collections.unmodifiableCollection(map.values());
+            return Collections.unmodifiableCollection(map.values()); //unmodifiableCollection บอกว่าให้แก้ไขข้อมูลในนี้ไม่ได้
         }
     public double getTotalPrice() {
         return map.values().stream().mapToDouble(o -> o.getTotal()).sum();
     }
-        public void addItem(K key, V value) {
-            V item = map.get(key);
+        public void addItem (K key, V value) { //product key = key : ClassicModelLineItem(Product Object) = value
+           // ที่ได้จาก product Repo ที่ค้นหาโดยใช้ Product code
+            V item = map.get(key); // ในตระกร้า มี Product code นี้หรือยัง
             if (item == null) {
-                map.put(key, value);
+                map.put(key, value); //ใส่ Product code นี้ลงใน ตระกร้า
             } else {
                 item.setQuantity(item.getQuantity() + value.getQuantity());
             }

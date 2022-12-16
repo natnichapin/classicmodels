@@ -38,7 +38,7 @@ public class OfficeRepository {
         return getEntityManager().find(Office.class, officeCode);
     }
 
-    public boolean insert(Office office) { //ต้องมี entityManager ก่อนเสมอ
+    public boolean insert(Office office) { //ต้องมี entityManager ก่อนเสมอ //เพิ่ม row ของ Office
         try {
             EntityManager entityManagerF = getEntityManager();
             entityManagerF.getTransaction().begin(); //เริ่ม
@@ -62,7 +62,7 @@ public class OfficeRepository {
         return false;
     }
 
-    public boolean delete(Office office) { //ได้ obj มาเลย
+    public boolean delete(Office office) { //ได้ obj มาเลย อาจจะมาจากการ query
         if (office != null) {
             EntityManager entityManagerF = getEntityManager();
             if (entityManagerF.contains(office)) {//เช็คว่ามีมั้ย ใน db  [SAVE ลง DB แล้ว]

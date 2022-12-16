@@ -28,6 +28,15 @@ public class CustomerRepository {
 
     //ต้องเพิ่ม method ที่ทำให้เรียก default size ได้
 
+    public List<Customer> findAll(){
+        EntityManager entityManager = getEntityManager();
+        Query query = entityManager.createNamedQuery("Customer.FindAll");
+        List<Customer> customers =   query.getResultList() ;
+        entityManager.close();
+        return  customers ;
+
+    }
+
     public Customer find(String customerId){
         return getEntityManager().find(Customer.class,customerId);
     }

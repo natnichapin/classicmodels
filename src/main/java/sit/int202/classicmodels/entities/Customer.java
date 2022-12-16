@@ -10,7 +10,8 @@ import lombok.Setter;
 @Table(name="customers")
 @NamedQueries({
         @NamedQuery(name = "Customer.FIND_USER",
-                query = "SELECT c FROM Customer c WHERE concat(trim(c.contactFirstName), ' ', trim(c.contactLastName)) = :user_account")
+                query = "SELECT c FROM Customer c WHERE concat(trim(c.contactFirstName), ' ', trim(c.contactLastName)) = :user_account"),
+        @NamedQuery(name="Customer.FindAll",query="SELECT c FROM Customer c")
 })
 
 public class Customer {
@@ -20,4 +21,6 @@ public class Customer {
     private String contactFirstName ;
     private String contactLastName;
     private String password ;
+    private String role ;
+
 }

@@ -7,7 +7,7 @@ import sit.int202.classicmodels.repositories.CustomerRepository;
 public class TestBcrypt {
     public static void main(String[] args) {
         CustomerRepository repository = new CustomerRepository();
-        Customer user = repository.findByName("Jean King");
+        Customer user = repository.findByName("Jean King"); //เอา object User
         System.out.println(user.getContactFirstName());
         System.out.println(user.getContactFirstName()+", "+user.getPassword());
         String password = "123abc" ;
