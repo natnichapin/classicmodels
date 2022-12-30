@@ -29,12 +29,35 @@
             display: none;
 
         }
+        #view-cart{
+            margin: 10px;
+        }
     </style>
     <script>
+        function CreatOrder() {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+                if(xhttp.status==200){
+                    NonDisplayViewCart()
+                    document.getElementById("message1").innerHTML="Success"
+                }
+                if(xhttp.status==400) {
+                    document.getElementById("message1").innerHTML = "Invalid Access !!";
+                }
+                // $('#viewCartModal').modal('show');
+            }
+            xhttp.open("GET","Order-History");
+            xhttp.send();
+        }
         function showViewCart() {
             $('#modalCart').modal('show') ;
             viewCart();
             }
+        function NonDisplayViewCart() {
+            $('#modalCart').modal('hide') ;
+
+        }
+
         function showLoginForm() {
             let menu = document.getElementById("login-menu").innerHTML;
             if (menu.includes('Logout')) { //ที่ nav มี logout มั้ย ถ้ามี ให้ logout
@@ -95,7 +118,7 @@
                 document.getElementById("view-cart").innerHTML = xhttp.responseText;
                 // $('#viewCartModal').modal('show');
             }
-            xhttp.open("GET","History-product");
+            xhttp.open("GET","Cart-product");
             xhttp.send();
         }
 
@@ -132,14 +155,24 @@
         }
 
         function viewHistory(){
+
             setLoading('on');
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function (){
                 setLoading('off');
                 document.getElementById("body-content").innerHTML = xhttp.responseText;
             }
-            xhttp.open("GET","History-product");
+            xhttp.open("GET","List");
             xhttp.send();
+        }
+        function ViewDetail(orderNumber){
+            let x=document.getElementById("detailOrder"+orderNumber)
+            if (x.style.display == 'none') {
+                x.style.display = 'block';
+            } else {
+                x.style.display = 'none';
+            }
+
         }
 
 

@@ -6,7 +6,6 @@ import jakarta.persistence.Query;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import sit.int202.classicmodels.entities.Office;
-import sit.int202.classicmodels.repositories.EntityManagerBuilder;
 
 import java.util.List;
 

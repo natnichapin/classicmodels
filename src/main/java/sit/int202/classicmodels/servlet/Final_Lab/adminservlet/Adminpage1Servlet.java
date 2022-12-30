@@ -1,4 +1,4 @@
-package sit.int202.classicmodels.Final_Lab.adminservlet;
+package sit.int202.classicmodels.servlet.Final_Lab.adminservlet;
 
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;

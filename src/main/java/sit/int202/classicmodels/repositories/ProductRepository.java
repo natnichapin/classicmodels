@@ -6,7 +6,7 @@ import sit.int202.classicmodels.entities.Product;
 
 import java.util.List;
 
-import static sit.int202.classicmodels.repositories.EntityManagerBuilder.getEntityManager;
+
 
 public class ProductRepository {
 

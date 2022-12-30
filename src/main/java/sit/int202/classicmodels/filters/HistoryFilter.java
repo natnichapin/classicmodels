@@ -4,11 +4,10 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import org.hibernate.Session;
 
 import java.io.IOException;
 
-@WebFilter(filterName = "HistoryFilter",servletNames = "HistoryServlet")
+@WebFilter(filterName = "HistoryFilter",servletNames = {"UserCartServlet","OrderServlet","ListHistroyServlet"})
 public class HistoryFilter implements Filter {
     private FilterConfig filterConfig ;
     public void init(FilterConfig config) throws ServletException {
@@ -23,7 +22,7 @@ public class HistoryFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request ;
            HttpSession session = httpServletRequest.getSession(false);
         if(session==null || session.getAttribute("user")==null) {
-            response.getWriter().write("<br><br><h2 class='text-danger'>Please login first !!! </h2>");
+            response.getWriter().write("<br><br><h1 class='text-danger'>Please login first For BuyingItem!!! </h1>");
         }
         else {
             chain.doFilter(request,response);

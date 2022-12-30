@@ -3,11 +3,11 @@ package sit.int202.classicmodels.repositories;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
 import sit.int202.classicmodels.entities.Customer;
-import sit.int202.classicmodels.entities.Product;
+
 
 import java.util.List;
 
-import static sit.int202.classicmodels.repositories.EntityManagerBuilder.getEntityManager;
+
 
 public class CustomerRepository {
     private EntityManager entityManager ;

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -12,6 +14,7 @@ import lombok.Setter;
         @NamedQuery(name = "Customer.FIND_USER",
                 query = "SELECT c FROM Customer c WHERE concat(trim(c.contactFirstName), ' ', trim(c.contactLastName)) = :user_account"),
         @NamedQuery(name="Customer.FindAll",query="SELECT c FROM Customer c")
+
 })
 
 public class Customer {
@@ -22,5 +25,10 @@ public class Customer {
     private String contactLastName;
     private String password ;
     private String role ;
+    private String city ;
+    private String country ;
+    @OneToMany(mappedBy = "customerNumber")
+    @Column(name = "orders")
+    private List<Orders> orders ;
 
 }

@@ -9,26 +9,24 @@ import sit.int202.classicmodels.models.ClassicModelLineItem;
 import java.io.IOException;
 import java.util.Collection;
 
-@WebServlet(name = "HistoryServlet", value = "/History-product")
-public class HistoryServlet extends HttpServlet {
+@WebServlet(name = "UserCartServlet", value = "/Cart-product")
+public class UserCartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         Cart<String, ClassicModelLineItem> cart = (Cart) session.getAttribute("cart");
         if(cart==null) {
-            session.setAttribute("message1", "not have product");
-            System.out.println("null-cart");
+            getServletContext().getRequestDispatcher("/CartItems.jsp").forward(request, response);
         }
         else {
                   Collection<ClassicModelLineItem>  List  =cart.getAllItem() ;
-                  List.stream().forEach(x-> System.out.println(x) );
-                  session.setAttribute("HistoryItem",List);
 
-                  session.setAttribute("message1", null);
+                  session.setAttribute("CartItems",List);
+            getServletContext().getRequestDispatcher("/CartItems.jsp").forward(request, response);
 
         }
 
-        getServletContext().getRequestDispatcher("/OrderHistory.jsp").forward(request, response);
+
 
 
     }
